@@ -1,0 +1,60 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Let's Get Physical</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1></h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <div>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+
+                    <h1 class="modal-title">Let's Get Physical</h1>
+                      </div>
+                      <div id="weight-content" class="modal-body">
+                        <p>So what's the audience up to?</p>
+                        <img id="destination" width="800" height="600" />
+                      </div>
+                      <div class="modal-footer">
+                        <button id="weigh-button" type="button" class="btn btn-primary">Weigh Whale</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $('#weigh-button').on('click', function(){
+        $.ajax({
+            url: "/api/capture"
+        }).then(function(response){
+            if (typeof response.img != "undefined") {
+                $('#destination').attr("src", response.img);
+            }
+        });
+    });
+    </script>
+  </body>
+</html>
