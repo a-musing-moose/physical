@@ -1,7 +1,7 @@
 FROM resin/raspberrypi-python:latest
 MAINTAINER Jonathan Moss <jmoss@snowballone.com.au>
 
-RUN apt-get update && apt-get install -y build-essential --no-install-recommends
+RUN apt-get update && apt-get install -y build-essential libraspberrypi-bin --no-install-recommends
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r app/requirements.txt
