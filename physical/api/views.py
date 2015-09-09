@@ -12,7 +12,7 @@ class ImageAPIView(views.APIView):
     def get(self, request, *args, **kwargs):
         data = camera.capture_image()
         return Response({
-            'img': "data:image/png;base64,{}".format(
+            'img': "data:image/jpeg;base64,{}".format(
                 base64.b64encode(data.getvalue())
             )
         })
